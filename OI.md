@@ -191,6 +191,8 @@ Parameter rules define which fields are required and how to extract them from na
 
 **⚠️ CRITICAL: Most tools require `agent_id` parameter. This must be provided in parameter rules.**
 
+**✅ Auto-Creation: Agents are automatically created if they don't exist when first used. You don't need to manually register agents.**
+
 **✅ All 43 tools have parameter rules configured.**
 
 **SQL to create parameter rules (complete set for all 43 tools):**
