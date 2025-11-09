@@ -89,6 +89,8 @@ class MemoryMcpServer {
                             `Tool ${toolName} requires 'agent_id'.`
                         );
                     }
+                    // Auto-create agent if it doesn't exist to prevent foreign key constraint errors
+                    await this.memoryManager.getDbService().ensureAgentExists(agent_id);
                 }
 
                 const handler = this.toolHandlers[toolName];
