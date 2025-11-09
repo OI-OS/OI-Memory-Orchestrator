@@ -218,6 +218,12 @@ INSERT OR REPLACE INTO parameter_rules (server_name, tool_name, tool_signature, 
 ('OI-Memory-Orchestrator', 'get_conversation_messages', 'OI-Memory-Orchestrator::get_conversation_messages', '["session_id"]',
  '{"session_id": {"FromQuery": "OI-Memory-Orchestrator::get_conversation_messages.session_id"}}', '[]'),
 
+('OI-Memory-Orchestrator', 'add_participant_to_session', 'OI-Memory-Orchestrator::add_participant_to_session', '["session_id", "participant_id"]',
+ '{"session_id": {"FromQuery": "OI-Memory-Orchestrator::add_participant_to_session.session_id"}, "participant_id": {"FromQuery": "OI-Memory-Orchestrator::add_participant_to_session.participant_id"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'summarize_conversation', 'OI-Memory-Orchestrator::summarize_conversation', '["session_id"]',
+ '{"session_id": {"FromQuery": "OI-Memory-Orchestrator::summarize_conversation.session_id"}}', '[]'),
+
 -- Task & Plan Management (all require agent_id)
 ('OI-Memory-Orchestrator', 'create_task_plan', 'OI-Memory-Orchestrator::create_task_plan', '["agent_id"]',
  '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::create_task_plan.agent_id"}, "goal_description": {"FromQuery": "OI-Memory-Orchestrator::create_task_plan.goal_description"}}', '[]'),
@@ -234,19 +240,99 @@ INSERT OR REPLACE INTO parameter_rules (server_name, tool_name, tool_signature, 
 ('OI-Memory-Orchestrator', 'add_task_to_plan', 'OI-Memory-Orchestrator::add_task_to_plan', '["agent_id", "plan_id", "title"]',
  '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::add_task_to_plan.agent_id"}, "plan_id": {"FromQuery": "OI-Memory-Orchestrator::add_task_to_plan.plan_id"}, "title": {"FromQuery": "OI-Memory-Orchestrator::add_task_to_plan.title"}}', '[]'),
 
+('OI-Memory-Orchestrator', 'add_subtask_to_plan', 'OI-Memory-Orchestrator::add_subtask_to_plan', '["agent_id", "plan_id", "subtaskData"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::add_subtask_to_plan.agent_id"}, "plan_id": {"FromQuery": "OI-Memory-Orchestrator::add_subtask_to_plan.plan_id"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'delete_tasks', 'OI-Memory-Orchestrator::delete_tasks', '["agent_id", "task_ids"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::delete_tasks.agent_id"}, "task_ids": {"FromQuery": "OI-Memory-Orchestrator::delete_tasks.task_ids"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'delete_subtasks', 'OI-Memory-Orchestrator::delete_subtasks', '["agent_id", "subtask_ids"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::delete_subtasks.agent_id"}, "subtask_ids": {"FromQuery": "OI-Memory-Orchestrator::delete_subtasks.subtask_ids"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'delete_task_plans', 'OI-Memory-Orchestrator::delete_task_plans', '["agent_id", "plan_ids"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::delete_task_plans.agent_id"}, "plan_ids": {"FromQuery": "OI-Memory-Orchestrator::delete_task_plans.plan_ids"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'get_subtasks', 'OI-Memory-Orchestrator::get_subtasks', '["agent_id"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::get_subtasks.agent_id"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'get_task_details', 'OI-Memory-Orchestrator::get_task_details', '["agent_id", "task_id"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::get_task_details.agent_id"}, "task_id": {"FromQuery": "OI-Memory-Orchestrator::get_task_details.task_id"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'update_task', 'OI-Memory-Orchestrator::update_task', '["agent_id", "task_id"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::update_task.agent_id"}, "task_id": {"FromQuery": "OI-Memory-Orchestrator::update_task.task_id"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'update_task_details', 'OI-Memory-Orchestrator::update_task_details', '["agent_id", "task_id"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::update_task_details.agent_id"}, "task_id": {"FromQuery": "OI-Memory-Orchestrator::update_task_details.task_id"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'update_subtask_details', 'OI-Memory-Orchestrator::update_subtask_details', '["agent_id", "subtask_id"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::update_subtask_details.agent_id"}, "subtask_id": {"FromQuery": "OI-Memory-Orchestrator::update_subtask_details.subtask_id"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'update_task_plan_status', 'OI-Memory-Orchestrator::update_task_plan_status', '["agent_id", "plan_id", "new_status"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::update_task_plan_status.agent_id"}, "plan_id": {"FromQuery": "OI-Memory-Orchestrator::update_task_plan_status.plan_id"}, "new_status": {"FromQuery": "OI-Memory-Orchestrator::update_task_plan_status.new_status"}}', '[]'),
+
+-- AI Task Enhancement
+('OI-Memory-Orchestrator', 'ai_suggest_subtasks', 'OI-Memory-Orchestrator::ai_suggest_subtasks', '["agent_id", "plan_id"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::ai_suggest_subtasks.agent_id"}, "plan_id": {"FromQuery": "OI-Memory-Orchestrator::ai_suggest_subtasks.plan_id"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'ai_suggest_task_details', 'OI-Memory-Orchestrator::ai_suggest_task_details', '["agent_id", "plan_id", "task_id"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::ai_suggest_task_details.agent_id"}, "plan_id": {"FromQuery": "OI-Memory-Orchestrator::ai_suggest_task_details.plan_id"}, "task_id": {"FromQuery": "OI-Memory-Orchestrator::ai_suggest_task_details.task_id"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'ai_analyze_plan', 'OI-Memory-Orchestrator::ai_analyze_plan', '["agent_id", "plan_id"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::ai_analyze_plan.agent_id"}, "plan_id": {"FromQuery": "OI-Memory-Orchestrator::ai_analyze_plan.plan_id"}}', '[]'),
+
 -- Knowledge Graph
 ('OI-Memory-Orchestrator', 'ingest_codebase_structure', 'OI-Memory-Orchestrator::ingest_codebase_structure', '["directory_path"]',
  '{"directory_path": {"FromQuery": "OI-Memory-Orchestrator::ingest_codebase_structure.directory_path"}}', '[]'),
 
+('OI-Memory-Orchestrator', 'ingest_file_code_entities', 'OI-Memory-Orchestrator::ingest_file_code_entities', '["agent_id", "paths"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::ingest_file_code_entities.agent_id"}, "paths": {"FromQuery": "OI-Memory-Orchestrator::ingest_file_code_entities.paths"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'knowledge_graph_memory', 'OI-Memory-Orchestrator::knowledge_graph_memory', '["agent_id", "operation"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::knowledge_graph_memory.agent_id"}, "operation": {"FromQuery": "OI-Memory-Orchestrator::knowledge_graph_memory.operation"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'kg_nl_query', 'OI-Memory-Orchestrator::kg_nl_query', '["agent_id", "query"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::kg_nl_query.agent_id"}, "query": {"FromQuery": "OI-Memory-Orchestrator::kg_nl_query.query"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'kg_infer_relations', 'OI-Memory-Orchestrator::kg_infer_relations', '["agent_id"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::kg_infer_relations.agent_id"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'kg_visualize', 'OI-Memory-Orchestrator::kg_visualize', '["agent_id"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::kg_visualize.agent_id"}}', '[]'),
+
+-- Embeddings
+('OI-Memory-Orchestrator', 'ingest_codebase_embeddings', 'OI-Memory-Orchestrator::ingest_codebase_embeddings', '["agent_id", "project_root_path"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::ingest_codebase_embeddings.agent_id"}, "project_root_path": {"FromQuery": "OI-Memory-Orchestrator::ingest_codebase_embeddings.project_root_path"}}', '[]'),
+
 ('OI-Memory-Orchestrator', 'query_codebase_embeddings', 'OI-Memory-Orchestrator::query_codebase_embeddings', '["query_text"]',
  '{"query_text": {"FromQuery": "OI-Memory-Orchestrator::query_codebase_embeddings.query_text"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'clean_up_embeddings', 'OI-Memory-Orchestrator::clean_up_embeddings', '["agent_id", "file_paths", "project_root_path"]',
+ '{"agent_id": {"FromQuery": "OI-Memory-Orchestrator::clean_up_embeddings.agent_id"}, "file_paths": {"FromQuery": "OI-Memory-Orchestrator::clean_up_embeddings.file_paths"}, "project_root_path": {"FromQuery": "OI-Memory-Orchestrator::clean_up_embeddings.project_root_path"}}', '[]'),
+
+-- Prompt Refinement
+('OI-Memory-Orchestrator', 'get_refined_prompt', 'OI-Memory-Orchestrator::get_refined_prompt', '["refined_prompt_id", "agent_id"]',
+ '{"refined_prompt_id": {"FromQuery": "OI-Memory-Orchestrator::get_refined_prompt.refined_prompt_id"}, "agent_id": {"FromQuery": "OI-Memory-Orchestrator::get_refined_prompt.agent_id"}}', '[]'),
+
+-- Database Management
+('OI-Memory-Orchestrator', 'backup_database', 'OI-Memory-Orchestrator::backup_database', '["backupFilePath"]',
+ '{"backupFilePath": {"FromQuery": "OI-Memory-Orchestrator::backup_database.backupFilePath"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'restore_database', 'OI-Memory-Orchestrator::restore_database', '["backupFilePath"]',
+ '{"backupFilePath": {"FromQuery": "OI-Memory-Orchestrator::restore_database.backupFilePath"}}', '[]'),
+
+('OI-Memory-Orchestrator', 'export_data_to_csv', 'OI-Memory-Orchestrator::export_data_to_csv', '["tableName", "filePath"]',
+ '{"tableName": {"FromQuery": "OI-Memory-Orchestrator::export_data_to_csv.tableName"}, "filePath": {"FromQuery": "OI-Memory-Orchestrator::export_data_to_csv.filePath"}}', '[]'),
 
 -- AI Tools
 ('OI-Memory-Orchestrator', 'ask_gemini', 'OI-Memory-Orchestrator::ask_gemini', '["query"]',
  '{"query": {"FromQuery": "OI-Memory-Orchestrator::ask_gemini.query"}}', '[]'),
 
 ('OI-Memory-Orchestrator', 'tavily_web_search', 'OI-Memory-Orchestrator::tavily_web_search', '["query"]',
- '{"query": {"FromQuery": "OI-Memory-Orchestrator::tavily_web_search.query"}}', '[]');
+ '{"query": {"FromQuery": "OI-Memory-Orchestrator::tavily_web_search.query"}}', '[]'),
+
+-- Utility
+('OI-Memory-Orchestrator', 'list_tools', 'OI-Memory-Orchestrator::list_tools', '[]',
+ '{}', '[]');
 
 COMMIT;
 ```
