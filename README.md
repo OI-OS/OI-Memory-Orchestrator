@@ -9,6 +9,18 @@
 
 ---
 
+## ⚠️ **FOR AI AGENTS USING OI OS (Brain Trust 4)**
+
+**If you are an AI agent installing this server into OI OS, please see [`OI.md`](./OI.md) for complete installation instructions, including:**
+- Intent mappings for natural language queries
+- Parameter rules for tool calls
+- Parameter extractors configuration
+- OI OS-specific setup and troubleshooting
+
+**The `OI.md` file contains all the SQL and TOML configurations needed for full OI OS integration.**
+
+---
+
 ## 📋 Table of Contents
 
 - [🌟 Overview](#-overview)
