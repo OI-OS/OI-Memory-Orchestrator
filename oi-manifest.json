@@ -1,0 +1,290 @@
+{
+  "server_name": "OI-Memory-Orchestrator",
+  "version": "1.0.0",
+  "intents": [
+    {
+      "keyword": "create conversation",
+      "tool_name": "create_conversation_session",
+      "priority": 10
+    },
+    {
+      "keyword": "start conversation",
+      "tool_name": "create_conversation_session",
+      "priority": 10
+    },
+    {
+      "keyword": "new conversation session",
+      "tool_name": "create_conversation_session",
+      "priority": 10
+    },
+    {
+      "keyword": "end conversation",
+      "tool_name": "end_conversation_session",
+      "priority": 10
+    },
+    {
+      "keyword": "close conversation",
+      "tool_name": "end_conversation_session",
+      "priority": 10
+    },
+    {
+      "keyword": "store message",
+      "tool_name": "store_conversation_messages",
+      "priority": 10
+    },
+    {
+      "keyword": "save message",
+      "tool_name": "store_conversation_messages",
+      "priority": 10
+    },
+    {
+      "keyword": "get conversation",
+      "tool_name": "get_conversation_session",
+      "priority": 10
+    },
+    {
+      "keyword": "list conversations",
+      "tool_name": "get_conversation_sessions",
+      "priority": 10
+    },
+    {
+      "keyword": "get messages",
+      "tool_name": "get_conversation_messages",
+      "priority": 10
+    },
+    {
+      "keyword": "conversation history",
+      "tool_name": "get_conversation_messages",
+      "priority": 10
+    },
+    {
+      "keyword": "summarize conversation",
+      "tool_name": "summarize_conversation",
+      "priority": 10
+    },
+    {
+      "keyword": "create task plan",
+      "tool_name": "create_task_plan",
+      "priority": 10
+    },
+    {
+      "keyword": "new task plan",
+      "tool_name": "create_task_plan",
+      "priority": 10
+    },
+    {
+      "keyword": "get plan",
+      "tool_name": "get_plan",
+      "priority": 10
+    },
+    {
+      "keyword": "list plans",
+      "tool_name": "list_task_plans",
+      "priority": 10
+    },
+    {
+      "keyword": "get tasks",
+      "tool_name": "get_plan_tasks",
+      "priority": 10
+    },
+    {
+      "keyword": "list tasks",
+      "tool_name": "get_plan_tasks",
+      "priority": 10
+    },
+    {
+      "keyword": "add task",
+      "tool_name": "add_task_to_plan",
+      "priority": 10
+    },
+    {
+      "keyword": "create task",
+      "tool_name": "add_task_to_plan",
+      "priority": 10
+    },
+    {
+      "keyword": "update task",
+      "tool_name": "update_task_details",
+      "priority": 10
+    },
+    {
+      "keyword": "delete task",
+      "tool_name": "delete_tasks",
+      "priority": 10
+    },
+    {
+      "keyword": "add subtask",
+      "tool_name": "add_subtask_to_plan",
+      "priority": 10
+    },
+    {
+      "keyword": "create subtask",
+      "tool_name": "add_subtask_to_plan",
+      "priority": 10
+    },
+    {
+      "keyword": "get subtasks",
+      "tool_name": "get_subtasks",
+      "priority": 10
+    },
+    {
+      "keyword": "list subtasks",
+      "tool_name": "get_subtasks",
+      "priority": 10
+    },
+    {
+      "keyword": "update subtask",
+      "tool_name": "update_subtask_details",
+      "priority": 10
+    },
+    {
+      "keyword": "delete subtask",
+      "tool_name": "delete_subtasks",
+      "priority": 10
+    },
+    {
+      "keyword": "ingest codebase",
+      "tool_name": "ingest_codebase_structure",
+      "priority": 10
+    },
+    {
+      "keyword": "parse codebase",
+      "tool_name": "ingest_codebase_structure",
+      "priority": 10
+    },
+    {
+      "keyword": "knowledge graph",
+      "tool_name": "knowledge_graph_memory",
+      "priority": 10
+    },
+    {
+      "keyword": "query knowledge graph",
+      "tool_name": "kg_nl_query",
+      "priority": 10
+    },
+    {
+      "keyword": "visualize knowledge graph",
+      "tool_name": "kg_visualize",
+      "priority": 10
+    },
+    {
+      "keyword": "infer relations",
+      "tool_name": "kg_infer_relations",
+      "priority": 10
+    },
+    {
+      "keyword": "ingest embeddings",
+      "tool_name": "ingest_codebase_embeddings",
+      "priority": 10
+    },
+    {
+      "keyword": "create embeddings",
+      "tool_name": "ingest_codebase_embeddings",
+      "priority": 10
+    },
+    {
+      "keyword": "search codebase",
+      "tool_name": "query_codebase_embeddings",
+      "priority": 10
+    },
+    {
+      "keyword": "semantic search",
+      "tool_name": "query_codebase_embeddings",
+      "priority": 10
+    },
+    {
+      "keyword": "clean embeddings",
+      "tool_name": "clean_up_embeddings",
+      "priority": 10
+    },
+    {
+      "keyword": "ask gemini",
+      "tool_name": "ask_gemini",
+      "priority": 10
+    },
+    {
+      "keyword": "gemini query",
+      "tool_name": "ask_gemini",
+      "priority": 10
+    },
+    {
+      "keyword": "tavily search",
+      "tool_name": "tavily_web_search",
+      "priority": 10
+    },
+    {
+      "keyword": "web search",
+      "tool_name": "tavily_web_search",
+      "priority": 10
+    },
+    {
+      "keyword": "ai suggest subtasks",
+      "tool_name": "ai_suggest_subtasks",
+      "priority": 10
+    },
+    {
+      "keyword": "ai analyze plan",
+      "tool_name": "ai_analyze_plan",
+      "priority": 10
+    },
+    {
+      "keyword": "ai suggest task details",
+      "tool_name": "ai_suggest_task_details",
+      "priority": 10
+    }
+  ],
+  "parameter_extractors": {
+    "create_conversation_session": {
+      "OI-Memory-Orchestrator::create_conversation_session.agent_id": "regex:(?:agent[\\\\s_-]?id|agent)[\\\\s:]+([a-zA-Z0-9_-]+)",
+      "OI-Memory-Orchestrator::create_conversation_session.title": "regex:(?:title|name|for)[\\\\s:]+(.+?)(?:\\\\s|$)"
+    },
+    "end_conversation_session": {
+      "OI-Memory-Orchestrator::end_conversation_session.session_id": "regex:(?:session[\\\\s_-]?id|session)[\\\\s:]+([a-zA-Z0-9_-]+)"
+    },
+    "store_conversation_messages": {
+      "OI-Memory-Orchestrator::store_conversation_messages.session_id": "regex:(?:session[\\\\s_-]?id|session)[\\\\s:]+([a-zA-Z0-9_-]+)"
+    },
+    "get_conversation_session": {
+      "OI-Memory-Orchestrator::get_conversation_session.session_id": "regex:(?:session[\\\\s_-]?id|session)[\\\\s:]+([a-zA-Z0-9_-]+)"
+    },
+    "get_conversation_sessions": {
+      "OI-Memory-Orchestrator::get_conversation_sessions.agent_id": "regex:(?:agent[\\\\s_-]?id|agent)[\\\\s:]+([a-zA-Z0-9_-]+)"
+    },
+    "get_conversation_messages": {
+      "OI-Memory-Orchestrator::get_conversation_messages.session_id": "regex:(?:session[\\\\s_-]?id|session)[\\\\s:]+([a-zA-Z0-9_-]+)"
+    },
+    "create_task_plan": {
+      "OI-Memory-Orchestrator::create_task_plan.agent_id": "regex:(?:agent[\\\\s_-]?id|agent)[\\\\s:]+([a-zA-Z0-9_-]+)",
+      "OI-Memory-Orchestrator::create_task_plan.goal_description": "regex:(?:goal|plan|for)[\\\\s:]+(.+?)(?:\\\\s|$)"
+    },
+    "get_plan": {
+      "OI-Memory-Orchestrator::get_plan.agent_id": "regex:(?:agent[\\\\s_-]?id|agent)[\\\\s:]+([a-zA-Z0-9_-]+)",
+      "OI-Memory-Orchestrator::get_plan.plan_id": "regex:(?:plan[\\\\s_-]?id|plan)[\\\\s:]+([a-zA-Z0-9_-]+)"
+    },
+    "list_task_plans": {
+      "OI-Memory-Orchestrator::list_task_plans.agent_id": "regex:(?:agent[\\\\s_-]?id|agent)[\\\\s:]+([a-zA-Z0-9_-]+)"
+    },
+    "get_plan_tasks": {
+      "OI-Memory-Orchestrator::get_plan_tasks.agent_id": "regex:(?:agent[\\\\s_-]?id|agent)[\\\\s:]+([a-zA-Z0-9_-]+)",
+      "OI-Memory-Orchestrator::get_plan_tasks.plan_id": "regex:(?:plan[\\\\s_-]?id|plan)[\\\\s:]+([a-zA-Z0-9_-]+)"
+    },
+    "add_task_to_plan": {
+      "OI-Memory-Orchestrator::add_task_to_plan.agent_id": "regex:(?:agent[\\\\s_-]?id|agent)[\\\\s:]+([a-zA-Z0-9_-]+)",
+      "OI-Memory-Orchestrator::add_task_to_plan.plan_id": "regex:(?:plan[\\\\s_-]?id|plan)[\\\\s:]+([a-zA-Z0-9_-]+)",
+      "OI-Memory-Orchestrator::add_task_to_plan.title": "regex:(?:task|title|name)[\\\\s:]+(.+?)(?:\\\\s|$)"
+    },
+    "ingest_codebase_structure": {
+      "OI-Memory-Orchestrator::ingest_codebase_structure.directory_path": "regex:(?:path|directory|dir)[\\\\s:]+([^\\\\s]+)"
+    },
+    "query_codebase_embeddings": {
+      "OI-Memory-Orchestrator::query_codebase_embeddings.query_text": "regex:(?:query|search|find)[\\\\s:]+(.+?)(?:\\\\s|$)"
+    },
+    "ask_gemini": {
+      "OI-Memory-Orchestrator::ask_gemini.query": "regex:(?:query|ask|question)[\\\\s:]+(.+?)(?:\\\\s|$)"
+    },
+    "tavily_web_search": {
+      "OI-Memory-Orchestrator::tavily_web_search.query": "regex:(?:query|search|find)[\\\\s:]+(.+?)(?:\\\\s|$)"
+    }
+  },
+  "reminder_message": "Memory Orchestrator MCP server with 43 tools for conversation management, task planning, knowledge graphs, embeddings, and AI tools. Requires GEMINI_API_KEY and TAVILY_API_KEY environment variables."
+}
