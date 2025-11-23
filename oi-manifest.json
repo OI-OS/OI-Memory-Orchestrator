@@ -254,8 +254,8 @@
       "OI-Memory-Orchestrator::get_conversation_messages.session_id": "regex:(?:session[\\\\s_-]?id|session)[\\\\s:]+([a-zA-Z0-9_-]+)"
     },
     "create_task_plan": {
-      "OI-Memory-Orchestrator::create_task_plan.agent_id": "regex:(?:agent[\\\\s_-]?id|agent)[\\\\s:]+([a-zA-Z0-9_-]+)",
-      "OI-Memory-Orchestrator::create_task_plan.goal_description": "regex:(?:goal|plan|for)[\\\\s:]+(.+?)(?:\\\\s|$)"
+      "OI-Memory-Orchestrator::create_task_plan.agent_id": "conditional:if_matches:agent[\\\\s_-]?id|then:regex:(?:agent[\\\\s_-]?id|agent)[\\\\s:]+([a-zA-Z0-9_-]+)|else:default:OI",
+      "OI-Memory-Orchestrator::create_task_plan.goal_description": "regex:(?:create|new)\\\\s+task\\\\s+plan\\\\s+(?:about|for)\\\\s+(.+)|(?:create|new)\\\\s+task\\\\s+plan\\\\s+(.+)"
     },
     "get_plan": {
       "OI-Memory-Orchestrator::get_plan.agent_id": "regex:(?:agent[\\\\s_-]?id|agent)[\\\\s:]+([a-zA-Z0-9_-]+)",

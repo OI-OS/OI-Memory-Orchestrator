@@ -70,7 +70,7 @@ interface TaskComplexityAnalysis {
 async function callGeminiAndParseJson<T>(
     geminiService: GeminiIntegrationService,
     prompt: string,
-    model: string = "gemini-2.5-flash-preview-05-20"
+    model: string = "gemini-2.5-flash"
 ): Promise<T> {
     const geminiResponse = await geminiService.askGemini(prompt, model);
     const responseText = geminiResponse.content[0]?.text ?? "";

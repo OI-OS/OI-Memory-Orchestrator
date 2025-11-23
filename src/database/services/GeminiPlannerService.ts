@@ -99,7 +99,7 @@ export interface InitialDetailedPlanAndTasks {
 // -------------------------------------------------------------------------
 const PLAN_STATUS_DRAFT = 'DRAFT';
 const TASK_STATUS_PLANNED = 'PLANNED';
-const GEMINI_MODEL_PLANNER = 'gemini-2.5-flash-preview-05-20';
+const GEMINI_MODEL_PLANNER = 'gemini-2.5-flash';
 
 export class GeminiPlannerService {
     private geminiIntegrationService: GeminiIntegrationService;
