@@ -34,8 +34,7 @@ class MemoryMcpServer {
         instance.server = new Server(
             {
                 name: 'memory-mcp-server',
-                version: '0.1.0',
-                description: 'A Model Context Protocol server for persistent memory management in AI agents using SQLite.'
+                version: '0.1.0'
             },
             {
                 capabilities: {
